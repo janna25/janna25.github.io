@@ -1,20 +1,81 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<section class="game-container">
+	<h1 class="title">¿QUIEN CREE TENER LA CABEZA BIEN PUESTA? </h1>
 
+	<section class="question container">
+
+		<section class="question___question">
+			<h5>¿{{question.question}}?</h5>
+		</section>
+
+		<section class="question___answers row">
+			<div class="question___answers__answer col-12 col-md-6 {{'option-' + answer.option}}" *ngFor="let answer of question.answers"
+			 (click)="selectResponse(answer, block)" #block>
+				<span class="question__answers__answer_option">{{answer.option | uppercase}}: </span>
+				<span class="question__answers__answer_response">{{answer.response}}</span>
+			</div>
+		</section>
+
+	</section>
+
+
+	<h5>Actual puntaje: {{points}}</h5>
+</section>
+
+
+<div class="modal correct-modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Felicidades, ¡Correcto!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Ahora tenes {{points}} puntos.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onAccept()">Siguente pregunta</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal wrong-modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Ups te equivocaste :(</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Volvé a intentar después </p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" (click)="resetAll()">Reintentar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal complete-modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">¡Sos un genio!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Ganaste sos el mejor. Tu puntaje fue de <b>{{points}}</b></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" (click)="resetAll()">Volver a jugar</button>
+			</div>
+		</div>
+	</div>
+</div>

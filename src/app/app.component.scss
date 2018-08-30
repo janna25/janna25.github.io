@@ -1,0 +1,53 @@
+.game-container {
+    padding-top: 40px;
+    height: 100%;
+    background: #020734;
+
+    h5, h1{
+        text-align: center;
+        color: white;
+    }
+    .question {
+        position: absolute; /*it can be fixed too*/
+        left: 0;
+        right: 0;
+        top: 30%;
+        margin: auto;
+        border: 1px solid white;
+        border-radius: 3px;
+        color: white;
+
+        .question___question {
+            text-align: center;
+        }
+
+        .question___answers {
+            .question___answers__answer {
+                cursor: pointer;
+
+                &:hover {
+                    background: rgb(50, 49, 75);
+                }
+
+                &.correct-answer {
+                    background: #4DAB5C;
+                }
+
+                &.wrong-answer {
+                    background: #EA3324;
+                }
+
+                .question__answers__answer_option {
+                    color: #CD995C;
+                }
+
+                text-align: center;
+                border-radius: 5px;
+                border: 1px solid white;
+                background: #4C4989;
+            }
+        }
+    }
+}
+
+// 4DAB5C
